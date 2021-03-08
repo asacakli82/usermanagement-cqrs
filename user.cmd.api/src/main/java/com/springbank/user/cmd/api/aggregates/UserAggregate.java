@@ -4,6 +4,7 @@ import com.springbank.user.cmd.api.commands.RegisterUserCommand;
 import com.springbank.user.cmd.api.commands.RemoveUserCommand;
 import com.springbank.user.cmd.api.commands.UpdateUserCommand;
 import com.springbank.user.cmd.api.security.PasswordEncoder;
+import com.springbank.user.cmd.api.security.PasswordEncoderImpl;
 import com.springbank.user.core.events.UserRegisteredEvent;
 import com.springbank.user.core.events.UserRemovedEvent;
 import com.springbank.user.core.events.UserUpdatedEvent;
@@ -19,19 +20,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.UUID;
 
 @Aggregate
-@NoArgsConstructor
 public class UserAggregate {
     @AggregateIdentifier
     private String id;
     private User user;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
+
+    public UserAggregate() {
+        passwordEncoder = new PasswordEncoderImpl();
+    }
 
     @CommandHandler
     public UserAggregate(RegisterUserCommand command) {
         var newUser = command.getUser();
         var password = newUser.getAccount().getPassword();
+
+        passwordEncoder = new PasswordEncoderImpl();
         var hashedPassword = passwordEncoder.hashPassword(password);
         newUser.setId(command.getId());
         newUser.getAccount().setPassword(hashedPassword);
