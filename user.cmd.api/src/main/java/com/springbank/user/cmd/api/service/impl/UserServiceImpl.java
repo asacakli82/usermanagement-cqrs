@@ -23,23 +23,25 @@ public class UserServiceImpl implements UserService {
     private final CommandGateway commandGateway;
 
     @Override
-    public CompletableFuture<RegisterUserResponse> registerUser(RegisterUserCommand registerUserCommand) throws Exception {
+    public RegisterUserResponse registerUser(RegisterUserCommand registerUserCommand) throws Exception {
 
         try{
             registerUserCommand.setId(UUID.randomUUID().toString());
-            return commandGateway.send(registerUserCommand);
+            commandGateway.send(registerUserCommand);
+            return new RegisterUserResponse
+                    (String.format("%s user succesfully registered.",registerUserCommand.getId()));
         }catch(Throwable ex){
             throw new ProcessingRegisterUserException(ex.getMessage());
         }
     }
 
     @Override
-    public CompletableFuture<UpdateUserResponse> updateUser(UpdateUserCommand updateUserCommand) throws Exception {
+    public UpdateUserResponse updateUser(UpdateUserCommand updateUserCommand) throws Exception {
         return null;
     }
 
     @Override
-    public CompletableFuture<RemoveUserResponse> removeUser(RemoveUserCommand removeUserCommand) throws Exception {
+    public RemoveUserResponse removeUser(RemoveUserCommand removeUserCommand) throws Exception {
         return null;
     }
 

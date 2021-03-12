@@ -12,8 +12,8 @@ import java.util.concurrent.CompletableFuture;
 
 public interface UserService {
 
-    CompletableFuture<RegisterUserResponse> registerUser(RegisterUserCommand registerUserCommand) throws Exception;
-    CompletableFuture<UpdateUserResponse> updateUser(UpdateUserCommand updateUserCommand) throws Exception;
-    CompletableFuture<RemoveUserResponse> removeUser(RemoveUserCommand removeUserCommand) throws Exception;
+    RegisterUserResponse registerUser(RegisterUserCommand registerUserCommand) throws Exception;
+    UpdateUserResponse updateUser(UpdateUserCommand updateUserCommand) throws Exception;
+    RemoveUserResponse removeUser(RemoveUserCommand removeUserCommand) throws Exception;
 
 }

@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
@@ -21,8 +22,7 @@ public class RegisterUserController {
     private final UserService userService;
 
     @PostMapping
-    @ResponseStatus(value = HttpStatus.CREATED)
-    public ResponseEntity<CompletableFuture<RegisterUserResponse>> registerUser(@RequestBody RegisterUserCommand registerUserCommand) throws Exception {
+    public ResponseEntity<RegisterUserResponse> registerUser(@Valid @RequestBody RegisterUserCommand registerUserCommand) throws Exception {
 
         return ResponseEntity.ok().body(userService.registerUser(registerUserCommand));
     }
