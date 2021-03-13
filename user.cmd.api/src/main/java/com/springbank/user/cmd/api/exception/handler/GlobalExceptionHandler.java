@@ -40,9 +40,10 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(exc, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-
+    @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
-                                                                  HttpHeaders headers, HttpStatus status, WebRequest request) {
+                                                                  HttpHeaders headers, HttpStatus status,
+                                                                  WebRequest request) {
         log.error("Error", ex);
         List<String> errorList = ex
                 .getBindingResult()
@@ -54,6 +55,9 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         ErrorDetails errorDetails = new ErrorDetails(LocalDateTime.now(), errorList.toString(), request.getDescription(false));
         return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+
+
 
     @ExceptionHandler({ConstraintViolationException.class})
     public ResponseEntity<?> constraintViolationException(Exception ex,WebRequest request) throws IOException {

@@ -27,9 +27,8 @@ public class UserServiceImpl implements UserService {
 
         try{
             registerUserCommand.setId(UUID.randomUUID().toString());
-            commandGateway.send(registerUserCommand);
-            return new RegisterUserResponse
-                    (String.format("%s user succesfully registered.",registerUserCommand.getId()));
+            //commandGateway.send(registerUserCommand);
+            return new RegisterUserResponse(registerUserCommand.getId()," - user succesfully registered.");
         }catch(Throwable ex){
             throw new ProcessingRegisterUserException(ex.getMessage());
         }
