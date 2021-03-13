@@ -3,6 +3,7 @@ package com.springbank.user.cmd.api.service.impl;
 import com.springbank.user.cmd.api.commands.RegisterUserCommand;
 import com.springbank.user.cmd.api.commands.RemoveUserCommand;
 import com.springbank.user.cmd.api.commands.UpdateUserCommand;
+import com.springbank.user.cmd.api.dto.BaseResponse;
 import com.springbank.user.cmd.api.dto.RegisterUserResponse;
 import com.springbank.user.cmd.api.dto.RemoveUserResponse;
 import com.springbank.user.cmd.api.dto.UpdateUserResponse;
@@ -28,16 +29,17 @@ public class UserServiceImpl implements UserService {
         try{
             registerUserCommand.setId(UUID.randomUUID().toString());
             commandGateway.send(registerUserCommand);
-            return new RegisterUserResponse
-                    (String.format("%s user succesfully registered.",registerUserCommand.getId()));
+            return new RegisterUserResponse(registerUserCommand.getId(),"  user succesfully registered.");
         }catch(Throwable ex){
             throw new ProcessingRegisterUserException(ex.getMessage());
         }
     }
 
     @Override
-    public UpdateUserResponse updateUser(UpdateUserCommand updateUserCommand) throws Exception {
-        return null;
+    public BaseResponse updateUser(String id, UpdateUserCommand updateUserCommand) throws Exception {
+        updateUserCommand.setId(id);
+        commandGateway.send(updateUserCommand);
+        return  new BaseResponse("User succesfully updated.");
     }
 
     @Override
