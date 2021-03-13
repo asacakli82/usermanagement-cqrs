@@ -15,6 +15,6 @@ public interface UserService {
 
     RegisterUserResponse registerUser(RegisterUserCommand registerUserCommand) throws Exception;
     BaseResponse updateUser(String id, UpdateUserCommand updateUserCommand) throws Exception;
-    RemoveUserResponse removeUser(RemoveUserCommand removeUserCommand) throws Exception;
+    BaseResponse removeUser(String id) throws Exception;
 
 }

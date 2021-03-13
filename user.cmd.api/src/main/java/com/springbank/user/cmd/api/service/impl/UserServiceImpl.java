@@ -37,14 +37,24 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public BaseResponse updateUser(String id, UpdateUserCommand updateUserCommand) throws Exception {
-        updateUserCommand.setId(id);
-        commandGateway.send(updateUserCommand);
-        return  new BaseResponse("User succesfully updated.");
+
+        try{
+            updateUserCommand.setId(id);
+            commandGateway.send(updateUserCommand);
+            return  new BaseResponse("User succesfully updated.");
+        }catch(Throwable ex){
+            throw new ProcessingRegisterUserException(ex.getMessage());
+        }
     }
 
     @Override
-    public RemoveUserResponse removeUser(RemoveUserCommand removeUserCommand) throws Exception {
-        return null;
+    public BaseResponse removeUser(String id) throws Exception {
+        try{
+            commandGateway.send(new RemoveUserCommand(id));
+            return  new BaseResponse("User succesfully removed.");
+        }catch(Throwable ex){
+            throw new ProcessingRegisterUserException(ex.getMessage());
+        }
     }
 
 }
