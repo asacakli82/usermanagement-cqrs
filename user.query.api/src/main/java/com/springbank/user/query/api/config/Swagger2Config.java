@@ -1,7 +1,6 @@
-package com.springbank.user.cmd.api.config;
+package com.springbank.user.query.api.config;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -16,7 +15,6 @@ import springfox.documentation.service.SecurityReference;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spi.service.contexts.SecurityContext;
 import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -61,14 +59,14 @@ public class Swagger2Config extends WebSecurityConfigurerAdapter implements WebM
                 .securitySchemes(Arrays.asList(apiKey()))
                 .select()
                 .apis(RequestHandlerSelectors
-                        .basePackage("com.springbank.user.cmd.api"))
+                        .basePackage("com.springbank.user.query.api"))
                 .paths(PathSelectors.regex("/.*"))
                 .build().apiInfo(apiEndPointsInfo());
     }
 
     private ApiInfo apiEndPointsInfo() {
-        return new ApiInfoBuilder().title("Bank User Command Service API")
-                .description("User Command Api")
+        return new ApiInfoBuilder().title("Bank User Query Service API")
+                .description("User Query Api")
                 .version("1.0.0")
                 .build();
     }

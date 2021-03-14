@@ -1,6 +1,7 @@
 package com.springbank.user.query.api.dto;
 
 import com.springbank.user.core.models.User;
+import com.springbank.user.core.rest.dto.BaseResponse;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserLookupResponse {
+public class UserLookupResponse extends BaseResponse {
 
     private List<User> user;
 
