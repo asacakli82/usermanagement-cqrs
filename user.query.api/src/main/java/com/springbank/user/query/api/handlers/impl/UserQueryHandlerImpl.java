@@ -9,6 +9,7 @@ import com.springbank.user.query.api.queries.SearchUsersQuery;
 import com.springbank.user.query.api.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.axonframework.eventhandling.EventHandler;
+import org.axonframework.queryhandling.QueryHandler;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -20,13 +21,13 @@ public class UserQueryHandlerImpl implements UserQueryHandler {
 
     private final UserRepository userRepository;
 
-    @EventHandler
+    @QueryHandler
     @Override
     public UserLookupResponse getAllUsers(FindAllUsersQuery query) {
         return UserLookupResponse.builder().user(userRepository.findAll()).build();
     }
 
-    @EventHandler
+    @QueryHandler
     @Override
     public UserLookupResponse getUserById(FindUserByIdQuery query) {
 
@@ -35,7 +36,7 @@ public class UserQueryHandlerImpl implements UserQueryHandler {
                         .map(Collections::singletonList).orElse(null)).build();
     }
 
-    @EventHandler
+    @QueryHandler
     @Override
     public UserLookupResponse searchUsers(SearchUsersQuery query) {
         return UserLookupResponse.builder().user(userRepository
