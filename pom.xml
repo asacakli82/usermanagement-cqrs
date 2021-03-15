@@ -11,7 +11,7 @@
 		<module>user.core</module>
 		<module>user.cmd.api</module>
 		<module>user.query.api</module>
-		<module>demo-app</module>
+		<module>user.oauth.api</module>
 	</modules>
 
 </project>
