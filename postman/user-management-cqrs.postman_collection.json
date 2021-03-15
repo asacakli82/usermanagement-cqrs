@@ -1,0 +1,154 @@
+{
+	"info": {
+		"_postman_id": "45e91578-b959-4817-921a-004fdc1fdafb",
+		"name": "user-management-cqrs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user-register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user\" : {\n        \"firstname\": \"selim\",\n        \"lastname\": \"sacakli\",\n        \"emailAddress\": \"selim@gmail.com\",\n        \"account\" : {\n            \"username\": \"selim17\",\n            \"password\": \"paswword\",\n            \"roles\" : [\n                \"READ_PRIVILEGE\"\n                \n            ]\n        }\n\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{dev-host}}:8081/api/v1/registerUser",
+					"host": [
+						"{{dev-host}}"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"registerUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update-user",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user\" : {\n        \"firstname\": \"yavuz selim\",\n        \"lastname\": \"sacakli\",\n        \"emailAddress\": \"selim@gmail.com\",\n        \"account\" : {\n            \"username\": \"yavuzselim\",\n            \"password\": \"selim1234\",\n            \"roles\" : [\n                \"READ_PRIVILEGE\",\"WRITE_PRIVILEGE\"\n            ]\n        }\n\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{dev-host}}:8081/api/v1/updateUser/e560f741-e0e7-482b-a0e6-875f4adb7a3e",
+					"host": [
+						"{{dev-host}}"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"updateUser",
+						"e560f741-e0e7-482b-a0e6-875f4adb7a3e"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "remove-user",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{dev-host}}:8081/api/v1/removeUser/e560f741-e0e7-482b-a0e6-875f4adb7a3e",
+					"host": [
+						"{{dev-host}}"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"removeUser",
+						"e560f741-e0e7-482b-a0e6-875f4adb7a3e"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user-get-all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{dev-host}}:8082/api/v1/userLookup/",
+					"host": [
+						"{{dev-host}}"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"v1",
+						"userLookup",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user-get-by-id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{dev-host}}:8082/api/v1/userLookup/02a03497-e39f-43d9-9d61-a18e3555c9ac/",
+					"host": [
+						"{{dev-host}}"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"v1",
+						"userLookup",
+						"02a03497-e39f-43d9-9d61-a18e3555c9ac",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user-get-by-filter",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{dev-host}}:8082/api/v1/userLookup/byFilter/selim",
+					"host": [
+						"{{dev-host}}"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"v1",
+						"userLookup",
+						"byFilter",
+						"selim"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
