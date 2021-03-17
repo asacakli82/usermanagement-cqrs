@@ -2,6 +2,7 @@ package com.springbank.user.cmd.api.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -81,6 +82,7 @@ public class Swagger2Config extends WebSecurityConfigurerAdapter implements WebM
                 "/configuration/security",
                 "/swagger-ui.html",
                 "/webjars/**");
+
     }
 
     @Override
